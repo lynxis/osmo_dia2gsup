@@ -181,7 +181,7 @@ handle_request(#diameter_packet{msg = Req, errors = []}, _SvcName, {_, Caps}) wh
 	lager:info("Num EUTRAN=~p, UTRAN=~p~n", [NumEutran, NumUgran]),
 	% construct GSUP request to HLR and transceive it
 	GsupTx1 = #{message_type => send_auth_info_req, imsi => list_to_binary(UserName),
-		    supported_rat_types => [rat_eutran_sgs], current_rat_type => rat_eutran_sgs},
+		    supported_rat_types => [rat_eutran_sgs], current_rat_type => rat_eutran_sgs, num_vectors_req => 1},
 	case ReqEU of
 		#'Requested-EUTRAN-Authentication-Info'{'Re-Synchronization-Info' = ReSyncInfo}
 		when is_binary(ReSyncInfo) ->

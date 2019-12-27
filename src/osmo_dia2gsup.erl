@@ -63,7 +63,7 @@ init(State) ->
 	% DIAMETER side
 	SvcName = ?MODULE,
 	diameter:start_service(SvcName, ?SERVICE(SvcName)),
-	Ip = application:get_env(osmo_dia2gsup, diameter_ip, "127.0.0.4"),
+	Ip = application:get_env(osmo_dia2gsup, diameter_ip, "192.168.104.4"),
 	Port = application:get_env(osmo_dia2gsup, diameter_port, 3868),
 	Proto = application:get_env(osmo_dia2gsup, diameter_proto, sctp),
 	listen({address, Proto, element(2,inet:parse_address(Ip)), Port}),

@@ -281,10 +281,10 @@ gen_ccm_id_resp(Response, LTList) ->
 		% Serial number, Unit name
 		% FIXME: hard-coded values!
 		16#00 ->
-			LTV = gen_ccm_ltv_str(Tag, "EUSE-OsmoSMSC-00-00-00-00-00-00"),
+			LTV = gen_ccm_ltv_str(Tag, "EUSE-MME-00-00-00-00-00-00"),
 			gen_ccm_id_resp(<< Response/binary, LTV/binary >>, Rest);
 		16#01 ->
-			LTV = gen_ccm_ltv_str(Tag, "EUSE-OsmoSMSC-00-00-00-00-00-00"),
+			LTV = gen_ccm_ltv_str(Tag, "EUSE-MME-00-00-00-00-00-00"),
 			gen_ccm_id_resp(<< Response/binary, LTV/binary >>, Rest);
 		_ ->
 			% HACK: for anything else, just use "00:00:00:00:00:00"

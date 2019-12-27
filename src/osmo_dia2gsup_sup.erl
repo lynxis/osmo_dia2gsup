@@ -10,7 +10,7 @@ start_link() ->
 
 init([]) ->
 	% GSUP side
-	HlrIp = application:get_env(osmo_dia2gsup, hlr_ip, "127.0.0.1"),
+	HlrIp = application:get_env(osmo_dia2gsup, hlr_ip, "10.70.0.3"),
 	HlrPort = application:get_env(osmo_dia2gsup, hlr_port, 4222),
 	Args = [{local, gsup_client}, gsup_client, [HlrIp, HlrPort, []], [{debug, [trace]}]],
 	GsupChild = {gsup_client, {gen_server, start_link, Args}, permanent, 2000, worker, [gsup_client]},

@@ -133,9 +133,7 @@ deliver_rx_ipa_msg(Socket, StreamID, StreamMap, DataBin) ->
 	DataDec = try_decode(StreamID, DataBin),
 	case ets:lookup(StreamMap, {Socket, StreamID}) of
 		[{_,{process_id, Pid}}] ->
-			Response = gen_server:call(Pid, {ipa, StreamID, DataDec}),
-			io:format("GSUP response: ~p~n", [Response]),
-			send(Socket, StreamID, Response);
+			Pid ! {ipa, Socket, StreamID, DataDec};
 		[{_,{callback_fn, Fn, Args}}] ->
 			Fn(Socket, StreamID, DataDec, Args);
 		[] ->
